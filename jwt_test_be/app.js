@@ -23,6 +23,7 @@ app.post("/login", (req, res) => {
 	const { username, password } = req.body;
 
 	// Perform your authentication here, for example by checking the username and password against a database
+	// Currently hardcoded to true for testing purposes
 	const isAuthenticated = true;
 
 	if (!isAuthenticated) {
