@@ -31,6 +31,12 @@ app.post("/login", (req, res) => {
 		return res.status(401).send({ error: "Invalid login credentials" });
 	}
 
+	const headers = {
+		alg: "HS256",
+		typ: "JWT",
+		kid: KEY_ID,
+	};
+
 	const payload = {
 		name: username,
 		email: "#{customerEmail}",
@@ -39,7 +45,7 @@ app.post("/login", (req, res) => {
 	};
 
 	// Generate the JWT
-	const token = jwt.sign(payload, SECRET, { header: { kid: KEY_ID } });
+	const token = jwt.sign(payload, SECRET, { header: headers });
 
 	// route protection
 	req.headers.origin === ORIGIN
