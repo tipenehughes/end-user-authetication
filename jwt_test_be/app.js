@@ -16,6 +16,7 @@ app.post("/login", (req, res) => {
 	// Secure credentials
 	const SECRET = process.env.SIGNING_KEY;
 	const KEY_ID = process.env.KEY_ID;
+	const ORIGIN = process.env.ORIGIN;
 
   console.log(req.body);
 
@@ -40,8 +41,13 @@ app.post("/login", (req, res) => {
 	// Generate the JWT
 	const token = jwt.sign(payload, SECRET, { header: { kid: KEY_ID } });
 
-	// Send the JWT in the response
-	return res.send({ token });
+	// route protection
+	req.headers.origin === ORIGIN
+		? res.send({ token })
+		: res
+				.status(403)
+				.send({ error: `Request origin does not match an approved domain` });
+
 });
 
 app.listen(3000, () => console.log("Listening on port 3000"));
