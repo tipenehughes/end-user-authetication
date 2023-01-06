@@ -1,14 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <button onclick="login()">Login</button>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="styles.css" />
+		<title>Document</title>
+	</head>
+	<body>
+		<form>
+			<label for="name">Username</label>
+			<input id="username" type="text" placeholder="Enter Username" name="uname" required />
+			<br />
+			<label for="psw">Password</label>
+			<input id="password" type="password" placeholder="Enter Password" name="psw" required />
+			<br />
+			<button id="loginBtn" type="submit">Login</button>
+		</form>
 
-    <script src="index.js"></script>
-</body>
+		<!-- Start of pokemonsupplyco Zendesk Widget script -->
+		<script
+			id="ze-snippet"
+			src="https://static.zdassets.com/ekr/snippet.js?key=c62c18ac-d3a3-4fb9-89ef-2226be5fd97e"
+		></script>
+		<!-- End of pokemonsupplyco Zendesk Widget script -->
+		<script src="index.js"></script>
+	</body>
 </html>
