@@ -31,6 +31,7 @@ app.post("/login", (req, res) => {
 		return res.status(401).send({ error: "Invalid login credentials" });
 	}
 
+	// Generates expiry time of 360 seconds for the JWT
 	const expiry = Math.floor((new Date().getTime() + 360 * 1000) / 1000);
 
 	const headers = {
@@ -42,7 +43,7 @@ app.post("/login", (req, res) => {
 	const payload = {
 		name: username,
 		email: "example@zendesk.com",
-		external_id: "example-external-id",
+		external_id: username,
 		exp: expiry,
 		scope: "user",
 	};
