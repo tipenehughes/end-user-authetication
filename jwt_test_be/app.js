@@ -18,6 +18,9 @@ app.post("/login", (req, res) => {
 	const KEY_ID = process.env.KEY_ID;
 	const ORIGIN = process.env.ORIGIN;
 
+	// Initialize external_id variable
+	let external_id;
+
 	console.log(req.body);
 
 	// Get the username and password from the request body
@@ -30,6 +33,21 @@ app.post("/login", (req, res) => {
 	if (!isAuthenticated) {
 		return res.status(401).send({ error: "Invalid login credentials" });
 	}
+
+	// Uncomment the following code to perform authentication against a database
+	/*
+	const isAuthenticated = async (req) => {
+		const data = await fetch("https://database.com/", req.body);
+		const res = await data.json();
+		return res.external_id;
+	}
+
+	if (!isAuthenticated) {
+		return res.status(401).send({ error: "Invalid login credentials" });
+	} else {
+		external_id = isAuthenticated();
+	}
+	*/
 
 	// Generates expiry time of 360 seconds for the JWT
 	const expiry = Math.floor((new Date().getTime() + 360 * 1000) / 1000);
