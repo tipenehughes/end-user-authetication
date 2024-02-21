@@ -9,7 +9,7 @@ const login = async (e) => {
 	const password = document.querySelector("#password");
 
 	// Stop submission and prompt user if username or password is empty
-	if(!username || !password) return alert("Please enter username and password");
+	if (!username || !password) return alert("Please enter username and password");
 
 	// Send username and password to server
 	const request = await fetch("http://localhost:3000/login", {
@@ -25,13 +25,13 @@ const login = async (e) => {
 	const response = await request.json();
 
 	// Login user to chat with the token received from server
-	window.zE("messenger", "loginUser", function (callback) {
+	zE("messenger", "loginUser", function (callback) {
 		callback(response.token);
 	});
 
 	// Clear username and password fields
-	username.value="";
-	password.value="";
+	username.value = "";
+	password.value = "";
 };
 
 loginBtn.addEventListener("click", login);

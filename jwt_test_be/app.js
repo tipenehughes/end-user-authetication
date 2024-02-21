@@ -1,6 +1,5 @@
 const express = require("express");
 const cors = require("cors");
-const bodyParser = require("body-parser");
 const jwt = require("jsonwebtoken");
 
 require("dotenv").config();
@@ -10,18 +9,15 @@ const app = express();
 // Adding CORS headers to response
 app.use(cors());
 
-app.use(bodyParser.json());
+// Parsing request body
+app.use(express.json());
 
 app.post("/login", (req, res) => {
+
 	// Secure credentials
 	const SECRET = process.env.SHARED_SECRET;
 	const KEY_ID = process.env.KEY_ID;
 	const ORIGIN = process.env.ORIGIN;
-
-	// Initialize external_id variable
-	let external_id;
-
-	console.log(req.body);
 
 	// Get the username and password from the request body
 	const { username, password } = req.body;
@@ -49,8 +45,8 @@ app.post("/login", (req, res) => {
 	}
 	*/
 
-	// Generates expiry time of 360 seconds for the JWT
-	const expiry = Math.floor((new Date().getTime() + 360 * 1000) / 1000);
+	// Generates expiry time of 300 seconds for the JWT
+	const expiry = Math.floor((new Date().getTime() + 300 * 1000) / 1000);
 
 	const headers = {
 		alg: "HS256",
